@@ -54,6 +54,7 @@ net.bridge.bridge-nf-call-iptables = 1
 EOF
 sysctl --system
 ```
+Note:If you get ipv4 error, then issue kubeadm reset and echo 1 > /proc/sys/net/ipv4/ip_forward
 ### Kubernetes Setup
 ##### Add yum repository
 ```
@@ -80,7 +81,7 @@ systemctl start kubelet
 ## On kmaster
 ##### Initialize Kubernetes Cluster
 ```
-kubeadm init --apiserver-advertise-address=172.42.42.100 --pod-network-cidr=192.168.0.0/16
+kubeadm init --apiserver-advertise-address=172.42.42.100 --pod-network-cidr=10.244.0.0/16
 ```
 ##### Copy kube config
 To be able to use kubectl command to connect and interact with the cluster, the user needs kube config file.
